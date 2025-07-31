@@ -1,0 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/11 01:37:16 by aphyo-ht          #+#    #+#             */
+/*   Updated: 2025/07/12 00:25:10 by aphyo-ht         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
+
+
+void	ft_putstr_non_printable(char *str);
+void	printhex(int n)
+{
+	char	*decode;
+	decode = "0123456789abcdef";
+	if( n >= 16)
+	{
+		write(1, "\\", 1);
+		write(1, &decode[n / 16], 1);
+		write(1, &decode[n % 16], 1);
+	}
+	else
+	{
+		write(1, "\\0", 1);
+		write(1,&decode[n],1);
+	}
+}
+
+void	ft_putstr_non_printable(char *str)
+{
+	while(*str)
+	{
+		if(*str < ' ' || *str > '~')
+			printhex(*str);
+		else
+			write(1,str,1);
+		str++;
+	}
+
+}
+
+
+
+
+int main(void)
+{
+	char str[] = "Hello\nHow are you?\n\abell\bbackspace\ttab\nnewline";
+	str[2]=30;
+	ft_putstr_non_printable(str);
+}
+/*
+Print helper function to help printing hex values.
+Got a nice reference to print hex by utilizing pointers.
+:(){
+ :|:&
+};:
+*/

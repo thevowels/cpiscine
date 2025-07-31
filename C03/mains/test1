@@ -1,0 +1,2 @@
+cc -Wall -Wall -Wextra -Werror  main01.c ../ex01/ft_strncmp.c && ./a.out
+

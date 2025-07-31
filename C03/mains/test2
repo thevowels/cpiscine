@@ -1,0 +1,2 @@
+cc -Wall -Wall -Wextra -Werror main02.c ../ex02/ft_strcat.c && ./a.out
+
